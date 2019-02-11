@@ -34,7 +34,7 @@
               </tr>
          
               {{each data}}
-              <tr data-id={{$value._id}} data-img= "{{$value.companyLogo}} role="row" class="odd">
+              <tr data-id={{$value._id}} data-img= {{$value.companyLogo}} role="row" class="odd">
                 <td class="sorting_1">
                   <img  width="50" height="50" src="http://localhost:4000/upload/{{$value.companyLogo}}" alt="">
                 </td>
@@ -60,7 +60,7 @@
                     {{$value.description}}
                   </td>
                   <td>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary app-position-update">
                       <i class="fa fa-edit"></i>
                       修改
                     </button>
@@ -76,8 +76,7 @@
       </div>
       <div class="row">
         <div class="col-sm-5">
-          <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57
-            entries</div>
+      
         </div>
         <div class="col-sm-7">
           <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">

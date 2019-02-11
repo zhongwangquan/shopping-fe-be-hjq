@@ -5,16 +5,10 @@ const jobsController = {
     render: function({req,res,router}){
         var _this = this;
         res.render(jobs);
-        
-        // $("#app-add-save").on("click", () => { 
-        //     _this.save(router);
-        //     // router.go("/bar/find");
-        //  });
          _this.save(router);
+
         $("#app-add-back").on("click",()=>{
             router.back();
-
-            // _this.return(router);
         })
     },
     save: function(router){
@@ -25,15 +19,9 @@ const jobsController = {
                error:function(){
                     console.log("添加失败");  
                },
-               
                 "resetForm" : true
-                // "dataType" : null
             };
 
-            // $("#app-form-submit").submit(function(){  
-            //     $(this).ajaxSubmit(options);  
-            //     return false;   //阻止表单默认提交  
-            //  });  
             $("#app-form-submit").ajaxSubmit(options);
         });
         // var companyLogo = $("#companyLogo").val(),
@@ -71,7 +59,6 @@ const jobsController = {
         // })
     },
     return: function(router){
-        // router.back();
         router.go('/bar/find')
     }
 

@@ -4,13 +4,9 @@ const router = express.Router();
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 const path = require('path')
-// router.get("",userController.home)
-// router.get("/register",userController.register)
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log(path.resolve(__dirname));
-        
       cb(null, path.resolve(__dirname,'../public/upload'))
     },
     filename: function (req, file, cb) {

@@ -1,5 +1,7 @@
 const userData = require("../models/userData");
 const mongo = require("../db/mongoose");
+const fs = require('fs')
+const path = require('path')
 
 
 const userController = {
@@ -21,15 +23,20 @@ const userController = {
             data:JSON.stringify(dbres)         
         });
     },
-    removejob: (req,response)=>{
+    removejob: async(req,response)=>{
         // console.log(req.query);
-        
-       mongo.remove({...req.query})
+        let {id,companyLogo} = req.query
 
-        // console.log(dbres);
-        
+        let result = await mongo.remove(id).then(res=>res)
+
+        if(result){ 
+            fs.unlink(path.resolve(__dirname,`../public/upload/${companyLogo}`), (err) => {
+                if (err) throw err;
+                console.log('图片was deleted');
+              });
+        }
         response.render("find.art",{
-            data:JSON.stringify(req.query.id)         
+            data:JSON.stringify("图片已经删除成功")         
         });
     }
 
@@ -37,8 +44,6 @@ const userController = {
 }
 
 module.exports = {
-    // login: userController.login,
-    // home: userController.home,
     addjob: userController.addjob,
     findjob: userController.findjob,
     removejob: userController.removejob

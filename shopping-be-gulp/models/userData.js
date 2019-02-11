@@ -34,7 +34,6 @@ const userData = {
  
 }
 
-
 module.exports = {
     home: userData.home,
     login: userData.login

@@ -9,8 +9,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/shopping", function (err) {
 })
 //定义骨架
 const Schema = mongoose.Schema({
-    // username: String,
-    // password: String
     companyLogo: String,
     companyName: String,
     positionName: String,
@@ -37,13 +35,8 @@ const mongo = {
         description,
         createTime}) {
 
-        // console.log(username);
-        // console.log(password);
         //创建实体
-        const instance = new model({
-            // username: username,
-            // password: password
-            
+        const instance = new model({  
             companyLogo: companyLogo,
             companyName: companyName,
             positionName: positionName,
@@ -87,10 +80,10 @@ const mongo = {
         let result = model.find({}).then(res => res);
         return result;
     },
-    remove: function ({id}) {
-    
-   
-        model.findById({"_id":id}, function (err, res) {
+    remove: function (id) {
+        console.log(id);
+        
+       const p1 = model.findById({"_id":id}, function (err, res) {
             
             if(res){
                 res.remove(function (err) {
@@ -103,17 +96,21 @@ const mongo = {
                 })
             }
 
-
-
-        })
-
+        }).then(res=>{
+            if( res ){
+                return true
+            }else{
+                return false
+            }
+        }).catch(err => false)
+        console.log(p1);
+        
+        return p1;
     }
 }
 module.exports = {
     addjob: mongo.addjob,
-
     update: mongo.update,
-   
     findjob: mongo.findjob,
     remove: mongo.remove
 

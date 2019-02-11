@@ -4,12 +4,6 @@ const router = require("./router/index");
 const port = 4000;
 const app = express();
 const bodyParse = require("body-parser");
-const pug= require("pug");
-
-
-// console.log(__dirname);
-// console.log(path.join(__dirname,"./public/login.html"))
-
 
 express.app = express();
 app.use(bodyParse.urlencoded({extended:false}));
@@ -22,10 +16,7 @@ app.set("view options",{
     cache: true
 })
 app.set("views","./views");//设置模板渲染引擎路径
-// app.set("view engine","art");
 
-
-// app.use("",router); 
 app.use("/bar",router);
 app.use(function(err,req,res,next){
     res.status(500).send("something borke");

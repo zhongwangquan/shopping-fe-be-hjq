@@ -22,11 +22,6 @@ router.route("/bar/position",(req,res,next)=>{
 
 
 });
-// router.route("/bar/remove",(req,res,next)=>{
-//     barController.remove({req,res,next,router});//此router是最上面定义的
-
-// });
-
 
 
 router.route('*', (req, res,next) => {

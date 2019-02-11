@@ -1,28 +1,20 @@
 const bar = require("../views/bar.html");
 
 const barController = {
-    async render({ res,router}) {
+    async render({res,router}) {
         var _this = this;
         let list = await _this.find().then(res => res)
         var datarender;
-        // console.log(list);
-        
         if(list){
             datarender = template.render(bar, {
                 data: JSON.parse(list)
-            })
-            
-        }
-        
-        else{
+            })   
+        }else{
             datarender = template.render(bar)
         }
-        // console.log(datarender);
         
         res.render(datarender)
-
-        // find();
-        _this.remove(router);
+        _this.remove(res,router);
 
     },
     find: function () {
@@ -30,42 +22,38 @@ const barController = {
         return $.ajax({
             url: "/bar/find",
             type: "get",
-
             success: (res) => {
                 if (res) {
                     return res;
-
                 }
             }
         })
     },
     remove: function (res,router) {
         var _this = this;
-        // console.log(router);
         
         $(".odd").on("click", ".app-position-remove", function () {
             let id = $(this).parents(".odd").attr("data-id")
+            let companyLogo = $(this).parents('tr').attr('data-img')
 
-            return $.ajax({
+          $.ajax({
                 url: "/bar/remove",
                 type: "get",
                 data:{
-                    id:id
+                    id:id,
+                    companyLogo:companyLogo 
                 },
                 success: (result) => {
                     if (result) {
                         _this.render({res,router})
                         console.log(result);
-                        // router.go('/bar/find')
+                        router.go('/bar/find')
                     }
                 }
             })
-           
-
         })
 
     }
 }
 
-// barController.find();
 module.exports = barController;

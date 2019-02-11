@@ -8,17 +8,10 @@
 */
 
 const gulp = require('gulp')
-
 const server = require('gulp-webserver')
-
 const sass = require('gulp-sass')
-
 const webpack = require('webpack-stream')
-
 const proxy = require('http-proxy-middleware')
-
-const babel = require('gulp-babel')
-
 const watch = require('gulp-watch')
 
 gulp.task('server', () => {
@@ -96,10 +89,6 @@ gulp.task('copystatic', () => {
 })
 
 gulp.task('watch', () => {
-  // gulp.watch('./*.html', ['copyhtml'])
-  // gulp.watch('./src/styles/**/*', ['scss'])
-  // gulp.watch('./src/scripts/**/*', ['js'])
-
   watch('./*.html', () => {
     gulp.start('copyhtml')
   })
