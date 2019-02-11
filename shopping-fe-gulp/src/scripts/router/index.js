@@ -16,7 +16,7 @@ router.route("/bar/find",(req,res,next)=>{
 
 });
 
-router.route("/bar/jobs",(req,res,next)=>{
+router.route("/bar/position",(req,res,next)=>{
 
     jobsController.render({req,res,next,router});//此router是最上面定义的
 

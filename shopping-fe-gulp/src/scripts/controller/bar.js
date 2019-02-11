@@ -5,16 +5,20 @@ const barController = {
         var _this = this;
         let list = await _this.find().then(res => res)
         var datarender;
+        // console.log(list);
+        
         if(list){
             datarender = template.render(bar, {
                 data: JSON.parse(list)
             })
-        }else{
-            datarender = template.render(bar, {
-                data: JSON.parse()
-            })
+            
         }
-
+        
+        else{
+            datarender = template.render(bar)
+        }
+        // console.log(datarender);
+        
         res.render(datarender)
 
         // find();
@@ -52,7 +56,7 @@ const barController = {
                     if (result) {
                         _this.render({res,router})
                         console.log(result);
-                        router.go('/bar/find')
+                        // router.go('/bar/find')
                     }
                 }
             })

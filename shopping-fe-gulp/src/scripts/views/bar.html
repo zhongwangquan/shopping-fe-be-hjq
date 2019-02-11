@@ -1,7 +1,7 @@
 <div class="box">
   <div class="box-header">
     <h3 class="box-title">
-      <a href="#/bar/jobs">
+      <a href="#/bar/position">
         <button type="button" class="btn btn-info btn-flat">
             <i class="fa fa-align-center"></i>
           </button>
@@ -34,8 +34,10 @@
               </tr>
          
               {{each data}}
-              <tr data-id={{$value._id}} role="row" class="odd">
-                <td class="sorting_1"></td>
+              <tr data-id={{$value._id}} data-img= "{{$value.companyLogo}} role="row" class="odd">
+                <td class="sorting_1">
+                  <img  width="50" height="50" src="http://localhost:4000/upload/{{$value.companyLogo}}" alt="">
+                </td>
                 <td>
                     {{$value.companyName}}
                   </td>

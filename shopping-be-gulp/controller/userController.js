@@ -1,11 +1,14 @@
 const userData = require("../models/userData");
 const mongo = require("../db/mongoose");
 
+
 const userController = {
 
     addjob: (req,response)=>{
-        console.log(req.body);
+        
         // console.log(JSON.stringify(req.body));
+        req.body.companyLogo = req.fileName
+        console.log(req.body);
         mongo.addjob({...req.body});
         response.render("home.art",{
             data:JSON.stringify(req.body)             
